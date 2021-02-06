@@ -1,3 +1,4 @@
+
 function levelOfService(ride) {
   let levelOfService
   if (ride.length > 1) {
@@ -10,6 +11,62 @@ function levelOfService(ride) {
     levelOfService = 'Noober X'
   }
   return levelOfService
+}
+
+function filterPoolArray(rides) {
+  let newArrayPool = []
+  console.log(newArrayPool)
+  for (z=0; z<rides.length; z++) {
+    // console.log(rides[z])
+    if (levelOfService(rides[z]) == 'Noober Pool') {
+      newArrayPool.push(rides[z])
+      console.log('Pool') 
+    }
+  }
+  console.log(newArrayPool)  
+  renderRides(newArrayPool)
+}
+
+function filterPurpleArray(rides) {
+  let newArrayPurple = []
+  console.log(newArrayPurple)
+  for (z=0; z<rides.length; z++) {
+    // console.log(rides[z])
+    if (levelOfService(rides[z]) == 'Noober Purple') {
+      newArrayPurple.push(rides[z])
+      console.log('Purple') 
+    }
+  }
+  console.log(newArrayPurple)  
+  renderRides(newArrayPurple)
+}
+
+function filterXLArray(rides) {
+  let newArrayXL = []
+  console.log(newArrayXL)
+  for (z=0; z<rides.length; z++) {
+    // console.log(rides[z])
+    if (levelOfService(rides[z]) == 'Noober XL') {
+      newArrayXL.push(rides[z])
+      console.log('XL') 
+    }
+  }
+  console.log(newArrayXL)  
+  renderRides(newArrayXL)
+}
+
+function filterXArray(rides) {
+  let newArrayX = []
+  console.log(newArrayX)
+  for (z=0; z<rides.length; z++) {
+    // console.log(rides[z])
+    if (levelOfService(rides[z]) == 'Noober X') {
+      newArrayX.push(rides[z])
+      console.log('X') 
+    }
+  }
+  console.log(newArrayX)  
+  renderRides(newArrayX)
 }
 
 function renderRides(ridesArray) {
@@ -67,7 +124,47 @@ function renderRides(ridesArray) {
   }
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-  // YOUR CODE
+window.addEventListener('DOMContentLoaded', async function() {
+  let url = 'https://kiei451.com/api/rides.json'
+  let response = await fetch(url)
+  let json = await response.json()
+  // console.log(json)
+
+
+  let allButton = document.querySelector('#all-filter')
+  allButton.addEventListener('click', async function(event) {
+    event.preventDefault()  
+    console.log("ayy i clicked an ALL button")
+    renderRides(json)
+  })
+
+  let poolButton = document.querySelector('#noober-pool-filter')
+  poolButton.addEventListener('click', async function(event) {
+    event.preventDefault()  
+    // console.log("ayy i clicked a pool button")
+    filterPoolArray(json)
+  })
+
+  let purpleButton = document.querySelector('#noober-purple-filter')
+  purpleButton.addEventListener('click', async function(event) {
+    event.preventDefault()  
+    // console.log("ayy i clicked a purple button")
+    filterPurpleArray(json)
+  })
+
+  let xlButton = document.querySelector('#noober-xl-filter')
+  xlButton.addEventListener('click', async function(event) {
+    event.preventDefault()  
+    // console.log("ayy i clicked a XL button")
+    filterXLArray(json)
+  })
+
+  let xButton = document.querySelector('#noober-x-filter')
+  xButton.addEventListener('click', async function(event) {
+    event.preventDefault()  
+    // console.log("ayy i clicked a X button")
+    filterXArray(json)
+  })
+  
 })
 
